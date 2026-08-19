@@ -11,6 +11,8 @@ export type PostMeta = {
   excerpt: string;
   tags: string[];
   wordCount: number;
+  /** 附件条目（public/attachments/ 下的文件名或完整外链，可选） */
+  attachments: string[];
 };
 
 export type Post = PostMeta & {
@@ -32,6 +34,17 @@ function countWords(text: string): number {
   return cjk + en;
 }
 
+/** 解析 frontmatter 的 attachments 字段：容错数组 / 单字符串 */
+function parseAttachments(data: Record<string, unknown>): string[] {
+  if (Array.isArray(data.attachments)) {
+    return data.attachments.map((v) => String(v)).filter(Boolean);
+  }
+  if (typeof data.attachments === "string" && data.attachments.trim()) {
+    return [data.attachments.trim()];
+  }
+  return [];
+}
+
 export function getAllPosts(): PostMeta[] {
   if (!fs.existsSync(postsDir)) return [];
   const files = fs
@@ -49,6 +62,7 @@ export function getAllPosts(): PostMeta[] {
       excerpt: (data.excerpt as string) ?? "",
       tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
       wordCount: countWords(content),
+      attachments: parseAttachments(data),
     };
   });
 
@@ -79,6 +93,7 @@ export function getPost(slug: string): Post | null {
     excerpt: (data.excerpt as string) ?? "",
     tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
     wordCount: countWords(content),
+    attachments: parseAttachments(data),
     content,
   };
 }

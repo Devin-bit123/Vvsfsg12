@@ -3,7 +3,13 @@ import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { books, getBookById } from "@/data/books";
+import {
+  resolveAttachments,
+  attachmentFromUrl,
+  type Attachment,
+} from "@/lib/attachments";
 import EPUBReader from "@/components/EPUBReader";
+import AttachmentDownloads from "@/components/AttachmentDownloads";
 
 export function generateStaticParams() {
   const params = books.map((b) => ({ id: b.id }));
@@ -30,6 +36,13 @@ export default function BookReaderPage({
   const book = getBookById(params.id);
   if (!book) notFound();
 
+  // 下载条：EPUB 本体 + 附加文件（缺失文件自动跳过并告警）
+  const epub = attachmentFromUrl(book.downloadUrl);
+  const downloads: Attachment[] = [
+    ...(epub ? [epub] : []),
+    ...resolveAttachments(book.attachments),
+  ];
+
   return (
     <div className="fixed inset-0 z-50 bg-paper flex flex-col">
       {/* 顶部条 */}
@@ -46,6 +59,9 @@ export default function BookReaderPage({
           </span>
         </div>
       </div>
+
+      {/* 附件下载条（有可下载文件时才显示） */}
+      <AttachmentDownloads items={downloads} variant="strip" />
 
       {/* 阅读器 */}
       <div className="flex-1 min-h-0">

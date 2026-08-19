@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import { getAllPosts, getPost, formatDate } from "@/lib/posts";
+import { resolveAttachments, type Attachment } from "@/lib/attachments";
 import PostContent from "@/components/PostContent";
+import AttachmentDownloads from "@/components/AttachmentDownloads";
 
 export function generateStaticParams() {
   const params = getAllPosts().map((p) => ({ slug: p.slug }));
@@ -31,6 +33,17 @@ export default function PostPage({
   const post = getPost(params.slug);
   if (!post) notFound();
 
+  // 附件：用户上传的（public/attachments/，缺失自动跳过）+ 自动生成的 Markdown 原稿
+  const downloads: Attachment[] = [
+    ...resolveAttachments(post.attachments),
+    {
+      name: "Markdown 原稿",
+      url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/downloads/posts/${encodeURIComponent(post.slug)}.md`,
+      ext: "MD",
+      filename: `${post.slug}.md`,
+    },
+  ];
+
   return (
     <article className="max-w-prose mx-auto px-6 py-16">
       <Link
@@ -51,6 +64,8 @@ export default function PostPage({
         </div>
         <div className="hr-soft mt-6" />
       </header>
+
+      <AttachmentDownloads items={downloads} />
 
       <div className="prose prose-stone max-w-none">
         <PostContent content={post.content} />

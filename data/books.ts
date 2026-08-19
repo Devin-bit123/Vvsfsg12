@@ -16,6 +16,8 @@ export type Book = {
   spineColor: string;
   /** 书脊高光色 */
   spineHighlight: string;
+  /** 附加下载文件（public/attachments/ 下的文件名或完整外链，可选） */
+  attachments?: string[];
 };
 
 /**
