@@ -2,8 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
-  // GitHub Pages 项目站点部署在 /traewebsite/ 子路径
-  basePath: "/traewebsite",
+  // GitHub Pages 项目站点部署在 /Vvsfsg12/ 子路径（与仓库名一致）
+  basePath: "/Vvsfsg12",
   images: { unoptimized: true },
 };
 
