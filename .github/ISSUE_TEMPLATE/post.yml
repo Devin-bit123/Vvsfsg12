@@ -1,0 +1,32 @@
+name: 发布文章
+description: 填表提交后自动发布为网站文章，约 2 分钟上线
+labels: ["post"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Issue 标题 = 文章标题。提交后机器人会自动发布并回复访问链接；
+        之后想修改，直接编辑这条 Issue 保存即可自动重新发布。
+  - type: input
+    id: excerpt
+    attributes:
+      label: 摘要
+      description: 显示在文章列表，留空则自动截取正文开头
+      placeholder: 一句话简介（可选）
+  - type: input
+    id: tags
+    attributes:
+      label: 标签
+      description: 多个标签用逗号分隔
+      placeholder: 随笔, 读书（可选）
+  - type: textarea
+    id: content
+    attributes:
+      label: 正文
+      description: 用 Markdown 书写；直接粘贴或拖入图片会自动上传显示
+      placeholder: |
+        ## 小标题
+
+        正文段落……
+    validations:
+      required: true

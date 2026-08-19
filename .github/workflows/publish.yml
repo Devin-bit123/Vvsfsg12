@@ -1,0 +1,120 @@
+name: 内容发布（Issue 自动上线）
+
+on:
+  issues:
+    types: [opened, edited, reopened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      (contains(github.event.issue.labels.*.name, 'post') ||
+      contains(github.event.issue.labels.*.name, 'book'))
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.commit.outputs.changed }}
+      message: ${{ steps.gen.outputs.message }}
+      warning: ${{ steps.gen.outputs.warning }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - id: gen
+        run: node scripts/publish-from-issue.mjs
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+          ISSUE_CREATED_AT: ${{ github.event.issue.created_at }}
+
+      - id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "content: publish issue #${{ github.event.issue.number }}"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 构建
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: 上传构建产物
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    if: needs.publish.outputs.changed == 'true'
+    needs: publish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  notify:
+    needs: [publish, deploy]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 回复并关闭 Issue
+        uses: actions/github-script@v7
+        env:
+          PUB_RESULT: ${{ needs.publish.result }}
+          DEP_RESULT: ${{ needs.deploy.result }}
+          CHANGED: ${{ needs.publish.outputs.changed }}
+          MESSAGE: ${{ needs.publish.outputs.message }}
+          WARNING: ${{ needs.publish.outputs.warning }}
+        with:
+          script: |
+            const { PUB_RESULT, DEP_RESULT, CHANGED, MESSAGE, WARNING } = process.env;
+            let body;
+            if (PUB_RESULT !== "success") {
+              body = "发布失败：请到仓库 Actions 页查看「内容发布」运行的日志。修复后编辑这条 Issue 保存即可重试。";
+            } else if (CHANGED !== "true") {
+              body = "本次提交没有产生内容变更。";
+            } else if (DEP_RESULT === "success") {
+              body = `${MESSAGE}\n\n约 1-2 分钟后生效。要修改内容，直接编辑这条 Issue 保存即可自动重新发布。${WARNING ? `\n\n${WARNING}` : ""}`;
+            } else {
+              body = "内容已提交到仓库，但部署失败：请到 Actions 页查看日志。";
+            }
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
+            if (PUB_RESULT === "success") {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                state: "closed",
+              });
+            }

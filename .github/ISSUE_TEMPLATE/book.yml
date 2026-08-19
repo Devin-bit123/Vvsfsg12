@@ -1,0 +1,53 @@
+name: 上架电子书
+description: 先上传 epub 到 public/books/，再填表提交，自动上架「阅读」栏目
+labels: ["book"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        第一步：先把 .epub 文件上传到仓库的 public/books/ 目录
+        （仓库页进入 public/books/ → Add file → Upload files → 拖入文件 → Commit changes）。
+
+        第二步：填写下面的表单提交（Issue 标题 = 书名）。
+  - type: input
+    id: author
+    attributes:
+      label: 作者
+      placeholder: T. S. Eliot
+    validations:
+      required: true
+  - type: input
+    id: translator
+    attributes:
+      label: 译者
+      description: 没有就留空
+      placeholder: 赵萝蕤（可选）
+  - type: input
+    id: year
+    attributes:
+      label: 年份
+      placeholder: "1922"
+    validations:
+      required: true
+  - type: textarea
+    id: intro
+    attributes:
+      label: 简介
+      description: 显示在阅读栏目的列表里
+      placeholder: 一段简短的介绍……
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: EPUB 文件名
+      description: 上传到 public/books/ 的文件名（例如 waste-land.epub），也可以填完整外链 URL
+      placeholder: waste-land.epub
+    validations:
+      required: true
+  - type: input
+    id: color
+    attributes:
+      label: 书脊颜色
+      description: CSS 色值（如 #1A1A1A），留空则自动分配
+      placeholder: "#1A1A1A（可选）"
