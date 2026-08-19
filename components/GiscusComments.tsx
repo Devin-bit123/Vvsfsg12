@@ -11,7 +11,7 @@ import Giscus from "@giscus/react";
  * 4. 替换下方四个字段
  */
 const GISCUS_CONFIG = {
-  repo: "Devin-bit123/traewebsite" as `${string}/${string}` | "",
+  repo: "Devin-bit123/Vvsfsg12" as `${string}/${string}` | "",
   repoId: "R_kgDOT9CLmA",
   category: "Announcements",
   categoryId: "DIC_kwDOT9CLmM4DDtGs",
