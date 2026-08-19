@@ -34,3 +34,6 @@ next-env.d.ts
 
 # npm cache (local, optional)
 /.npm-cache
+
+# build-generated post downloads（prebuild 每次构建重新生成）
+/public/downloads/

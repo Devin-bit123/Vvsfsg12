@@ -92,3 +92,12 @@ body {
   background-color: var(--rule);
   border-radius: 3px;
 }
+
+/* ── 诗体排版 ──
+   lib/remark-verse.ts 把「多行短行」段落（诗歌/诗体散文）标记为 .verse，
+   pre-wrap 保留源文件的逐行换行、行首缩进与行内空格（如行号对齐）；
+   长行自动折行，桌面/移动端均不横向溢出。普通段落不走此类。 */
+.prose p.verse {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
