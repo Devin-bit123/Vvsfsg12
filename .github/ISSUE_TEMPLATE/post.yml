@@ -20,10 +20,18 @@ body:
       description: 多个标签用逗号分隔
       placeholder: 随笔, 读书（可选）
   - type: textarea
+    id: attachments
+    attributes:
+      label: 附件
+      description: 可选。先把文件上传到仓库 public/attachments/ 目录（进入目录 → Add file → Upload files → 拖入文件 → Commit changes），再每行填一个文件名；支持 EPUB / Markdown / PDF / TXT 等任意格式，也可填完整外链；「显示名|文件名」可自定义名称
+      placeholder: |
+        译注对照.pdf
+        荒原|waste-land.txt
+  - type: textarea
     id: content
     attributes:
       label: 正文
-      description: 用 Markdown 书写；直接粘贴或拖入图片会自动上传显示
+      description: 用 Markdown 书写；直接粘贴或拖入图片会自动上传显示；诗歌一行一句即可自动保留换行
       placeholder: |
         ## 小标题
 

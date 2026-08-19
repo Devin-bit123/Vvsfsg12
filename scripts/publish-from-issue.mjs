@@ -52,12 +52,36 @@ function parseSections(text) {
   return map;
 }
 
+/** 附件条目（每行一个）→ 数组；条目支持「文件名」或「显示名|文件名」或外链 */
+function parseAttachmentLines(field) {
+  return String(field || "")
+    .split(/\r?\n/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/** 检查本地附件是否已上传到 public/attachments/，缺失的记入 warnings */
+function warnMissingAttachments(entries, warnings) {
+  for (const entry of entries) {
+    const target = entry.includes("|")
+      ? entry.slice(entry.indexOf("|") + 1).trim()
+      : entry.trim();
+    if (!target || /^https?:\/\//i.test(target)) continue; // 外链无法校验
+    const fileName = target.replace(/^attachments\//i, "").replace(/^\/+/, "");
+    if (!fs.existsSync(path.join("public", "attachments", fileName))) {
+      warnings.push(fileName);
+    }
+  }
+}
+
 if (!number) die("缺少 ISSUE_NUMBER");
 if (!title) die("Issue 标题不能为空（它是文章标题 / 书名）");
 
 const isPost = labels.includes("post");
 const isBook = labels.includes("book");
 if (isPost && isBook) die("同一 Issue 不能同时带 post 和 book 标签");
+
+const warnings = []; // 附件/文件缺失提醒，最终合入 Issue 回复
 
 if (isPost) {
   // 正文是表单最后一个字段：取「### 正文」标记之后的全部内容，
@@ -83,6 +107,8 @@ if (isPost) {
     .split(/[,，、]+/)
     .map((s) => s.trim())
     .filter(Boolean);
+  const attachments = parseAttachmentLines(header["附件"]);
+  warnMissingAttachments(attachments, warnings);
 
   const file = `content/posts/issue-${number}.md`;
   const front = [
@@ -91,6 +117,7 @@ if (isPost) {
     `date: ${JSON.stringify(date)}`,
     `excerpt: ${JSON.stringify(excerpt)}`,
     `tags: ${JSON.stringify(tags)}`,
+    `attachments: ${JSON.stringify(attachments)}`,
     "---",
     "",
     "",
@@ -115,6 +142,7 @@ if (isPost) {
   const year = get("年份") || String(new Date(createdAt).getFullYear());
   const intro = get("简介", "介绍");
   const fileField = get("EPUB 文件名", "文件名");
+  const extraFiles = parseAttachmentLines(sections["附加文件"]);
 
   if (!author) die("缺少「作者」字段");
   if (!intro) die("缺少「简介」字段");
@@ -132,11 +160,10 @@ if (isPost) {
 
   // epub 缺失提醒（外链无法校验）
   if (!isExternal && !fs.existsSync(path.join("public", "books", fileName))) {
-    setOutput(
-      "warning",
-      `注意：public/books/ 下暂未找到 ${fileName}，请先上传 epub 文件（上传后无需重提表单，下次部署自动生效）。`
-    );
+    warnings.push(`public/books/${fileName}`);
   }
+  // 附加文件缺失提醒
+  warnMissingAttachments(extraFiles, warnings);
 
   // 书脊配色：用户指定，否则按 Issue 编号从色板轮换
   const palette = [
@@ -168,6 +195,7 @@ if (isPost) {
     epubUrl: downloadUrl,
     spineColor,
     spineHighlight: lighten(spineColor),
+    ...(extraFiles.length ? { attachments: extraFiles } : {}),
   };
 
   const file = `content/books/issue-${number}.json`;
@@ -178,4 +206,11 @@ if (isPost) {
 } else {
   console.log("skipped: no post/book label");
   setOutput("message", "Issue 未带 post / book 标签，已跳过");
+}
+
+if (warnings.length) {
+  setOutput(
+    "warning",
+    `注意：以下文件在仓库中暂未找到：${warnings.join("、")}。请先上传（附件传到 public/attachments/，epub 传到 public/books/），上传后无需重提表单，下次部署自动生效。`
+  );
 }

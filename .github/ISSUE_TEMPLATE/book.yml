@@ -45,6 +45,13 @@ body:
       placeholder: waste-land.epub
     validations:
       required: true
+  - type: textarea
+    id: extrafiles
+    attributes:
+      label: 附加文件
+      description: 可选。除 EPUB 外还想提供的下载文件（PDF / TXT / MD 等），先上传到 public/attachments/，每行填一个文件名；支持外链与「显示名|文件名」
+      placeholder: |
+        译注对照.pdf
   - type: input
     id: color
     attributes:
