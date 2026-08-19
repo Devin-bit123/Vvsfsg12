@@ -6,7 +6,9 @@ import { getAllPosts, getPost, formatDate } from "@/lib/posts";
 import PostContent from "@/components/PostContent";
 
 export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+  const params = getAllPosts().map((p) => ({ slug: p.slug }));
+  // output: 'export' 要求动态路由返回非空参数；文章为空时用占位符（渲染为 404）
+  return params.length ? params : [{ slug: "_" }];
 }
 
 export function generateMetadata({

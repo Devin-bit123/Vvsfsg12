@@ -6,7 +6,9 @@ import { books, getBookById } from "@/data/books";
 import EPUBReader from "@/components/EPUBReader";
 
 export function generateStaticParams() {
-  return books.map((b) => ({ id: b.id }));
+  const params = books.map((b) => ({ id: b.id }));
+  // output: 'export' 要求动态路由返回非空参数；书目为空时用占位符（渲染为 404）
+  return params.length ? params : [{ id: "_" }];
 }
 
 export function generateMetadata({
