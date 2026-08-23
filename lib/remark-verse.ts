@@ -4,7 +4,9 @@ import type { Transformer } from "unified";
 /**
  * 诗体排版插件：识别「多行短行」段落并标记 class="verse"。
  *
- * 判定规则：段内行数 ≥ MIN_LINES 且每行 trim 后长度 ≤ MAX_LINE。
+ * 判定规则：段内行数 ≥ MIN_LINES 且每行可见内容长度 ≤ MAX_LINE
+ * （测量时行内连续空格折叠为单个，行号对齐等装饰性空格不计入，
+ * 否则带深度对齐缩进的诗行会因 trim 后长度超标而漏判）。
  * - 诗歌/诗体散文（一行一句，中文诗行约 10-20 字、希腊六音步约 50-55 字符）命中
  * - 普通文章（一段一行）、手动折行的长行散文（>60 字符）不命中，排版不变
  * - 标题 / 列表 / 引用 / 代码块 / 表格等其他节点不参与判定
@@ -45,10 +47,15 @@ function collectLines(
   return lines;
 }
 
+/** 行的可见内容长度：trim 后行内连续空格折叠为单个（对齐空格不计入） */
+function visibleLength(line: string): number {
+  return line.trim().replace(/\s+/g, " ").length;
+}
+
 function looksLikeVerse(paragraph: Paragraph): boolean {
   const lines = collectLines(paragraph.children);
   if (lines.length < MIN_LINES) return false;
-  return lines.every((line) => line.trim().length <= MAX_LINE);
+  return lines.every((line) => visibleLength(line) <= MAX_LINE);
 }
 
 export function remarkVerse(): Transformer<Root> {
