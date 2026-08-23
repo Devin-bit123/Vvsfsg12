@@ -2,8 +2,8 @@
 title: "废土 (*The Waste Land*)"
 date: "2026-08-23"
 excerpt: "T.S.艾略特"
-tags: ["诗歌翻译"]
-attachments: ["[废土.md](https://github.com/user-attachments/files/31349148/default.md)"]
+tags: ["诗歌翻译  |  （我的诗歌译作）"]
+attachments: ["[废土 The Waste Land.md](https://github.com/user-attachments/files/31350134/The.Waste.Land.md)"]
 ---
 
 ### 废土 (*The Waste Land*)
