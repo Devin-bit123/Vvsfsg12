@@ -18,11 +18,11 @@ attachments: ["[废土.md](https://github.com/user-attachments/files/31349148/de
 另，原文中，梵语均以拉丁字母转写呈现。
 
 底本：
-*Collected Poems,1909-1962
+*_Collected Poems,1909-1962_
 （Faber & Faber ,2002)
 
 校阅参考：
-The Poems of T.S.Eliot : the annotated text,Volume Ⅰ
+*_The Poems of T.S.Eliot : the annotated text,Volume Ⅰ_
 Edited by Christopher Ricks and Jim McCue
 （Faber & Faber ,2015）
 
@@ -41,7 +41,7 @@ Edited by Christopher Ricks and Jim McCue
  ### 废土
 
              〈拉丁（叙事）/希腊（“ ”）：
-             要知道，我曾亲自在库迈目睹西比拉悬吊在瓶中，
+             要知道，我曾在库迈目睹西比拉悬吊在瓶子里，
              当孩子们问她：“西比拉，你想要什么？”
              她答道：“我想要死。”〉
 
@@ -182,14 +182,14 @@ Edited by Christopher Ricks and Jim McCue
 118                  是门下的风。
 119  “现在又是什么声？风在做什么？”
 120                没什么，还是没什么。
-121                                “你
+121                                                       “你
 122  “什么也不知道？什么也没看见？什么也
 123  不记得？”
 
 124       我记得
 125  那些是珍珠——曾为他双眸。
 126  “你还活着，是吧？你脑子里有东西吗？”
-127                                  但
+127                                                        但
 128  噢 噢 噢 噢 那莎士比荷亚式的拉格曲——
 129  它多么优雅
 130  多么轻灵
@@ -205,7 +205,7 @@ Edited by Christopher Ricks and Jim McCue
 139  当丽儿的丈夫复员时，我说——
 140  我直言不讳，亲口对她说，
 141  **请快吧到点啦**
-142  阿尔伯特快回来了，打扮精神点吧。
+142  阿尔伯特快回来了，打扮得精神点吧。
 143  他会想知道你把他给的钱用在哪了
 144  给你镶牙的钱。他给了，我瞧着呢。
 145  把旧的都拔了吧，丽儿，配副好看的，
@@ -257,8 +257,8 @@ Edited by Christopher Ricks and Jim McCue
 187  一只老鼠悄悄爬过草丛
 188  拖着它黏滑的肚皮蹭过河滩
 189  而我正垂钓在阴郁的运河旁
-190  时正冬暮，绕至煤气厂后
-191  沉思着我兄王之罹难
+190  时正冬暮，绕行至煤气厂后
+191  沉思着我兄王的罹难
 192  冥想着此前我父王的死。
 193  赤裸白躯横陈在湿泞的低地
 194  骸骨弃于狭矮干燥的阁楼中，
@@ -274,7 +274,7 @@ Edited by Christopher Ricks and Jim McCue
 203  啾 啾 啾
 204  喳 喳 喳 喳 喳 喳
 205  遭如此强暴
-206  忒如斯啊
+206  忒汝斯啊
 
 207  蜃景之城
 208  在冬日午间的褐雾下
@@ -282,7 +282,7 @@ Edited by Christopher Ricks and Jim McCue
 210  胡须未刮，口袋塞满葡萄干
 211  到岸价·伦敦：见票即付，
 212  用通俗法语邀我
-213  享用午宴于坎农街酒店
+213  去坎农街酒店用午餐
 214  随后在大都会度过周末。
 
 215  堇色时辰，当双眼与背脊
