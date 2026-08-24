@@ -20,7 +20,7 @@ export function generateMetadata({
 }): Metadata {
   const post = getPost(params.slug);
   return {
-    title: post?.title ?? "随笔",
+    title: post?.title ?? "发布",
     description: post?.excerpt,
   };
 }
@@ -50,7 +50,7 @@ export default function PostPage({
         href="/posts"
         className="inline-flex items-center gap-1.5 font-mono text-xs text-vermilion"
       >
-        <ArrowLeft size={14} /> 返回文章随笔
+        <ArrowLeft size={14} /> 返回发布
       </Link>
 
       <header className="mt-8 mb-10">
