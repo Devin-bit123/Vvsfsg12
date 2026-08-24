@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
 
 export const metadata: Metadata = {
-  title: "文章随笔",
+  title: "发布",
   description: "学术随笔与翻译心得。按时间倒序排列。",
 };
 
@@ -15,7 +15,7 @@ export default function PostsPage() {
       <header className="mb-12 md:mb-16">
         <h1 className="font-display text-ink leading-none text-3xl">
           <span className="text-4xl">02.</span>
-          <span> — 文章随笔</span>
+          <span> — 发布</span>
         </h1>
       </header>
 
