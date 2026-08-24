@@ -34,7 +34,7 @@ export default function Home() {
         >
           <div className="space-y-3 py-4 md:px-8">
             <div>
-              <h2 className="block text-2xl font-display tracking-wide text-ink transition-colors group-hover:text-vermilion">文章</h2>
+              <h2 className="block text-2xl font-display tracking-wide text-ink transition-colors group-hover:text-vermilion">发布</h2>
               <span className="block text-sm font-display text-slate mt-1">POSTS</span>
             </div>
             <div className="h-32 md:h-40 flex items-center justify-center">
