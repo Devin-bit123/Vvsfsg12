@@ -1,16 +1,17 @@
 ---
 title: "传统与个人才能（*Tradition and the Individual Talent*）"
 date: "2026-09-03"
-excerpt: "T.S.艾略特"
-tags: ["论文"]
-attachments: ["[传统与个人才能.md](https://github.com/user-attachments/files/31789609/default.md)"]
+excerpt: "译自：Eliot, T. S. *The Sacred Wood: Essays on Poetry and Criticism*. Methuen, 1920. 校注参考：Eliot, T. S. "
+tags: []
+attachments: []
 ---
 
 译自：Eliot, T. S. *The Sacred Wood: Essays on Poetry and Criticism*. Methuen, 1920.
 校注参考：Eliot, T. S. *The Complete Prose of T. S. Eliot: The Critical Edition*. Vol. 2, *The Perfect Critic, 1919–1926*, edited by Anthony Cuda and Ronald Schuchard, Johns Hopkins UP and Faber and Faber, 2021.
+
 ——————————————————
 
-### 传统与个人才能
+传统与个人才能
 
 T.S.艾略特 著 | Vvsfsg12 译
 
@@ -60,7 +61,7 @@ II
 那家伙为何要选择作奸犯科呢，
 将他性命寄托于判官的唇舌，
 为雕琢这么个尤物——招兵买马
-让他们为她浪掷武勇？……[^5]
+让他们为她浪掷武勇？……[^7]
 
 如果将这一段落置于上下文中考察，它显然有着积极与消极情感的化合：一种对美极为强烈的吸引，和一种对丑同样强烈的迷恋，丑与美相对照，又将美摧毁。这种对照情感间的平衡，存在于台词所系属的戏剧情境中，但仅凭那情境本身，并不足以将之成全。可以说，这就是戏剧所提供的结构性情感〔structural emotion〕。但整体效果和主导音调之所以形成，则是由于众多浮泛的感受与它们发生化合，从而给予我们一种新的艺术情感，而这些感受与这种情感的亲和性，绝非表面显见。
 
@@ -79,18 +80,29 @@ II
 
 [^3]: “三氧化硫”——原文作 "sulphurous acid（亚硫酸）"。此处作者笔误，将“硫酸(sulphuric acid)”误写作“亚硫酸(sulphurous acid)”。不过，即使将此处改正为"sulphuric acid"，表述仍不严谨，因为二氧化硫和氧气在铂的催化作用下首先生成三氧化硫(sulphur trioxide)；三氧化硫再与水反应才生成硫酸。艾略特此后也察觉了这一错误。化学家 P. W. Robertson 于1926年致信指出问题，艾略特更是在回信中明确承认这一比喻 "…is false and reveals…an ignorance of chemistry（错误并暴露出化学方面的无知）" 。然而，后续收入该文的出版物通常仍有意保留原文面貌，未直接改动原文。尽管如上述云云，这一关于催化剂的类比仍不失其精妙与启发性。
 
-[^4]: 《神曲·地狱篇》第五章，73-142行。
-
-[^5]: 出自《复仇者悲剧》（The Revenger’s Tragedy）第三幕。该作是一部詹姆士一世时期的复仇悲剧，约1605-1606年首演，作者匿名，目前多推测为托马斯·米德尔顿（Thomas Middleton）所作。男主 Vindice（拉丁语 vindex 的单数夺格，意为复仇者、保卫者）曾爱恋一个名为 Gloriana 的女子，一位公爵向 Gloriana 求爱遭拒后恼怒而将她毒害。Vindice 多年一直保存着 Gloriana 的骷髅，并谋划复仇。他伪装成一个叫 Piato 的人物，为好色的公爵物色女人，这次他把 Gloriana 的骷髅装扮成一个女人，并在她的口部涂毒，如此，不知情的公爵在昏暗中亲吻这个装扮好的骷髅时便会中毒。
-	
-	其弟 Hippolito 看到装扮好的骷髅，问：
-	
-	Brother y’ave spoke that right,/ Is this the form that living shone so bright?
-	
-	Vindice 答：The very same,
-	
-	紧接着就进入艾略特引用的独白部分。
-	
-	后文 Vindice 又说：Surely we’re all mad people, and they/ Whom we think are, are not, we mistake those,/ ’Tis we are mad in sense, they but in clothes.
+[^4]: 《神曲·地狱篇》第五章，73-14hes.
 
 [^6]: 见亚里士多德《论灵魂》Ⅰ.4, 408b。νοῦς 为 νόος 的缩约形式。不严谨地说，该词有两层基础意思：一是广义的「心智、心灵、思维」（甚至「意图」）；二是相对狭义的「理性」，有些形而上的意味。对于该词在《论灵魂》原文语境中的含义，田书峰理解并对译为「理性」很精确。英译本有译作 "mind" 者如 J. A. Smith，也有作 "intellect" 如 Joe Sachs，后者似更细致。但《传统与个人才能》这篇文章中反复提及 mind 一词，所指含义多元，所以在引用此句时，T.S.艾略特对 νοῦς 一词可能有一种广义化倾向，「心智」这一译法在广义化倾向下，仍显薄弱。
+
+[^7]: 引用部分：
+	And now methinks I could e'en chide myself
+	For doating on her beauty, though her death
+	Shall be revenged after no common action.
+	Does the silkworm expend her yellow labours
+	For thee? For thee does she undo herself?
+	Are lordships sold to maintain ladyships
+	For the poor benefit of a bewildering minute?
+	Why does yon fellow falsify highways,
+	And put his life between the judge's lips,
+	To refine such a thing—keeps horse and men
+	To beat their valours for her? . . .
+	
+	bewildering 为艾略特偏爱的一种异文，常规写作 bewitching
+	「作奸犯科」为简译，原文 falsify highways：(1)改动路牌使旅人迷途，以便行劫；(2)走 high ways 贵族生活方式骗取信用乃至举债渎法
+	
+	出自《复仇者悲剧》（The Revenger’s Tragedy）第三幕。该作是一部詹姆士一世时期的复仇悲剧，约1605-1606年首演，作者匿名，目前多推测为托马斯·米德尔顿（Thomas Middleton）所作。男主 Vindice（拉丁语 vindex 的单数夺格，意为复仇者、保卫者）曾爱恋一个名为 Gloriana 的女子，一位公爵向 Gloriana 求爱遭拒后恼怒而将她毒害。Vindice 多年一直保存着 Gloriana 的骷髅，并谋划复仇。他伪装成一个叫 Piato 的人物，为好色的公爵物色女人，这次他把 Gloriana 的骷髅装扮成一个女人，并在她的口部涂毒，如此，不知情的公爵在昏暗中亲吻这个装扮好的骷髅时便会中毒。
+		其弟 Hippolito 看到装扮好的骷髅，问：
+		Brother y’ave spoke that right,/ Is this the form that living shone so bright?
+		Vindice 答：The very same,
+		紧接着就进入艾略特引用的独白部分。
+		后文 Vindice 又说：Surely we’re all mad people, and they/ Whom we think are, are not, we mistake those,/ ’Tis we are mad in sense, they but in clothes.
